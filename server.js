@@ -40,7 +40,7 @@ app.post('/updateNote/:note', function (req, res) {
     stringifyFile.note.push(req.params.note);
     fs.writeFile('./test.json', JSON.stringify(stringifyFile), function (err) {
       if (err) throw err;
-      console.log('File updated' + " - " + res);
+      console.log('File updated');
     });
   });
   res.send();
