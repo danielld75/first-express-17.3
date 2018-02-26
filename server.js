@@ -7,15 +7,19 @@ var stringifyFile;
 app.use(bodyParser.json());
 app.use(express.static('assets'));
 
+app.use(function(req, res, next){
+  console.log('Jestem pośrednikiem przy żądaniu do /store');
+  next();
+});
+
+app.get('/store', function(req, res){
+  res.send("To jest sklep");
+});
+
 app.get('/', function (req, res) {
   res.sendFile('/index.html');
-
-  // fs.readFile('./test.json', 'utf-8', function (err, data) {
-  //   if (err) throw err;
-  //   stringifyFile = data;
-  //   res.send(data);
-  // })
 });
+
 app.get('/userform', function (req, res) {
   const response = {
     first_name: req.query.first_name,
